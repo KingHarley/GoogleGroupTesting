@@ -31,13 +31,12 @@ namespace AdminSDKDirectoryQuickstart
             });
 
             // Define parameters of request.
-            UsersResource.ListRequest request = service.Users.List();
-            request.Customer = "my_customer";
-            request.MaxResults = 10;
-            request.OrderBy = UsersResource.ListRequest.OrderByEnum.Email;
+            var httpreq = service.Users.List();
+            var request = service.Users.List();
+            request.Domain = @"https://console.cloud.google.com/iam-admin/settings?project=testproject-350613";
 
             // List users.
-            IEnumerable<User> users = request.Execute().UsersValue;
+            IList<User> users = request.Execute().UsersValue;
             Console.WriteLine("Users:");
             if (users.Any())
             {
